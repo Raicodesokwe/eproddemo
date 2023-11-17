@@ -335,9 +335,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   children: List.generate(
                       extraItemsList.length,
                       (index) => GestureDetector(
-                            onTap: () async {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => ScanPage()));
+                            onTap: () {
+                              extraItemsList[index].label ==
+                                      'Check seed authenticity'
+                                  ? Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (context) => ScanPage()))
+                                  : showDialog(
+                                      context: context,
+                                      builder: (ctx) {
+                                        return ComingSoon(size: size);
+                                      });
                             },
                             child: Container(
                                 height: size.height * 0.15,
